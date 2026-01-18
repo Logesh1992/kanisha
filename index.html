@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Kanisha! 🌹</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&family=Playfair+Display:ital,wght@1,700&family=Cinzel:wght@500&family=Great+Vibes&family=Parisienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --deep-red: #800f2f;
+            --soft-pink: #ffccd5;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle at top right, #590d22, #240008);
+            background-attachment: fixed;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- Flower Engine --- */
+        #flower-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 9999; overflow: hidden;
+        }
+        .falling-flower {
+            position: absolute;
+            top: -50px;
+            animation: fall linear infinite;
+            font-size: 20px;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 5px rgba(255,0,0,0.5));
+        }
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg) translateX(0px); opacity: 0; }
+            10% { opacity: 0.8; }
+            100% { transform: translateY(100vh) rotate(360deg) translateX(50px); opacity: 0; }
+        }
+
+        /* --- Transitions & Animations --- */
+        #main-content {
+            transition: opacity 1.5s ease;
+            opacity: 1;
+        }
+
+        .shake-screen {
+            animation: shake 0.8s cubic-bezier(.36,.07,.19,.97) both;
+        }
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .flash-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: white; z-index: 20000; opacity: 0; pointer-events: none;
+        }
+        .flash-active {
+            animation: flashAnim 2.5s ease-out forwards;
+        }
+        @keyframes flashAnim {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            position: relative; z-index: 10; max-width: 1000px; margin: 0 auto; padding: 40px 20px;
+        }
+        .hero { text-align: center; margin-bottom: 80px; position: relative; }
+        .glass-box {
+            background: var(--glass-bg); backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border); border-radius: 30px;
+            padding: 40px; box-shadow: var(--shadow);
+        }
+        .name-title {
+            font-family: 'Playfair Display', serif; font-size: 5rem;
+            background: linear-gradient(to right, #fff, #ff4d6d);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px; animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px rgba(255, 77, 109, 0.2); }
+            to { text-shadow: 0 0 20px rgba(255, 77, 109, 0.6); }
+        }
+        .hero-img-wrapper {
+            width: 250px; height: 250px; margin: 0 auto 30px; border-radius: 50%;
+            border: 5px solid rgba(255,255,255,0.2); overflow: hidden;
+            box-shadow: 0 0 30px rgba(255, 77, 109, 0.4);
+        }
+        .hero-img-wrapper img { width: 100%; height: 145%; object-fit: cover; }
+        
+        .countdown { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .cd-box {
+            background: rgba(0,0,0,0.3); padding: 10px 20px; border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .cd-box span { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: block; }
+        .cd-box label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- Memory Lane --- */
+        .memory-lane { display: flex; flex-direction: column; gap: 100px; padding: 50px 0; position: relative; }
+        .memory-lane::before {
+            content: ''; position: absolute; left: 50%; top: 0; width: 2px; height: 100%;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+            transform: translateX(-50%); z-index: -1;
+        }
+        .memory-item { display: flex; align-items: center; justify-content: center; position: relative; }
+        .memory-item:nth-child(odd) { justify-content: flex-start; }
+        .memory-item:nth-child(even) { justify-content: flex-end; }
+        .memory-item.center { justify-content: center; }
+
+        .polaroid {
+            background: white; padding: 10px 10px 30px 10px; width: 300px; border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5); transform: rotate(-3deg);
+        }
+        .memory-item:nth-child(even) .polaroid { transform: rotate(3deg); }
+        .polaroid img { width: 100%; height: 350px; object-fit: cover; border-radius: 2px; filter: sepia(20%); }
+        
+        /* --- SYMBOL ANIMATION FIXED HERE --- */
+        .deco-flower {
+            position: absolute; font-size: 3rem; color: var(--primary);
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            /* This animation makes them float */
+            animation: floatSymbol 4s ease-in-out infinite; 
+        }
+        @keyframes floatSymbol {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .memory-item:nth-child(odd) .deco-flower { right: -50px; top: -20px; }
+        .memory-item:nth-child(even) .deco-flower { left: -50px; bottom: -20px; }
+
+        /* --- Wish Section --- */
+        .wish-section { text-align: center; margin-top: 50px; }
+        .wish-text { font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 30px; }
+        .btn-magic {
+            background: linear-gradient(45deg, var(--primary), var(--deep-red)); border: none;
+            padding: 15px 50px; border-radius: 50px; color: white; font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif; cursor: pointer;
+            box-shadow: 0 5px 20px rgba(255, 77, 109, 0.5); transition: transform 0.3s;
+        }
+        .btn-magic:hover { transform: translateY(-5px); }
+
+        /* --- NEW UPGRADED SURPRISE SCREEN CONTAINER --- */
+        #surprise-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #590d22 0%, #000 100%);
+            z-index: 15000;
+            opacity: 0; pointer-events: none; transition: opacity 3s ease;
+            overflow-y: auto; /* Allow scrolling */
+        }
+        
+        .active-surprise { opacity: 1 !important; pointer-events: all !important; }
+
+        /* Step 1: The Birthday Wish */
+        .surprise-step-1 {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
+            position: relative;
+        }
+
+        .scroll-indicator {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            font-size: 2rem; color: #fff; opacity: 0.7;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+            40% {transform: translateX(-50%) translateY(-20px);}
+            60% {transform: translateX(-50%) translateY(-10px);}
+        }
+
+        /* Step 2: Family Section */
+        .surprise-step-2 {
+            min-height: 100vh;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            padding: 40px 20px;
+            background: linear-gradient(to top, #240008, transparent);
+        }
+
+        .romantic-hbd {
+            font-family: 'Great Vibes', cursive; font-size: 4rem; color: #ffccd5;
+            text-shadow: 0 0 10px rgba(255, 77, 109, 0.5); margin-bottom: -10px;
+            opacity: 0; transform: translateY(-20px); transition: all 2s ease 1s;
+        }
+
+        .romantic-name {
+            font-family: 'Playfair Display', serif; font-size: 6rem; font-weight: 700;
+            background: linear-gradient(to right, #fff0f3, #ff4d6d, #fff0f3);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 77, 109, 0.8); margin-bottom: 30px; display: block;
+            opacity: 0; transform: scale(0.8); transition: all 2s ease 1.5s;
+            animation: lovePulse 3s infinite alternate;
+        }
+        @keyframes lovePulse {
+            0% { transform: scale(1); text-shadow: 0 0 30px rgba(255, 77, 109, 0.8); }
+            100% { transform: scale(1.05); text-shadow: 0 0 60px rgba(255, 77, 109, 1); }
+        }
+
+        .romantic-msg {
+            font-family: 'Parisienne', cursive; font-size: 2rem; color: #fff;
+            max-width: 800px; margin: 0 auto; line-height: 1.5;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            opacity: 0; transform: translateY(30px); transition: all 2s ease 2.5s;
+        }
+        .highlight-word { color: var(--primary); font-weight: bold; }
+
+        .active-surprise .romantic-hbd { opacity: 1; transform: translateY(0); }
+        .active-surprise .romantic-name { opacity: 1; transform: scale(1); }
+        .active-surprise .romantic-msg { opacity: 1; transform: translateY(0); }
+
+        /* Family Photo Styles */
+        .family-card {
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); padding: 20px;
+            border-radius: 20px; max-width: 800px; width: 100%; text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6); margin-top: 20px;
+        }
+        .family-card img {
+            width: 100%; border-radius: 10px; margin-bottom: 20px;
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        .family-quote {
+            font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #ffccd5;
+            font-style: italic; line-height: 1.6;
+        }
+
+        /* Mobile Tweaks */
+        @media (max-width: 768px) {
+            .name-title { font-size: 3.5rem; }
+            .hero-img-wrapper { width: 200px; height: 200px; }
+            .memory-lane::before { left: 20px; }
+            .memory-item { justify-content: center !important; margin-left: 20px; }
+            .polaroid { width: 260px; }
+            /* Keep deco flowers visible if space permits, or hide if clutter */
+            .deco-flower { display: none; }
+            
+            .romantic-hbd { font-size: 3rem; }
+            .romantic-name { font-size: 4rem; }
+            .romantic-msg { font-size: 1.5rem; }
+            .family-quote { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="flash" class="flash-overlay"></div>
+    <div id="flower-container"></div>
+
+    <div id="main-content">
+        <div class="container">
+            
+            <section class="hero glass-box">
+                <p style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--soft-pink);">Counting Down To</p>
+                <h1 class="name-title">Kanisha</h1>
+                
+                <div class="hero-img-wrapper">
+                    <img src="img/WhatsApp Image 2025-12-23 at 22.22.17_1266b157.jpg" alt="Birthday Girl">
+                </div>
+
+                <p style="font-family: 'Dancing Script'; font-size: 2rem; color: var(--soft-pink);">A surprise written in love is waiting for you… 💌 </p>
+                <div class="countdown" id="countdown">
+                    <div class="cd-box"><span id="days">00</span><label>Days</label></div>
+                    <div class="cd-box"><span id="hours">00</span><label>Hrs</label></div>
+                    <div class="cd-box"><span id="minutes">00</span><label>Min</label></div>
+                    <div class="cd-box"><span id="seconds">00</span><label>Sec</label></div>
+                </div>
+            </section>
+
+            <div class="memory-lane">
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.21.42_3d88e033.jpg" alt="Moment"></div>
+                  
+                </div>
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.21.42_6a1f87c5.jpg" alt="Smile"></div>
+                  
+                </div>
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.21.43_2408db37.jpg" alt="Mirror"></div>
+                </div>
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.21.43_4a1e09e1.jpg" alt="Portrait"></div>
+                </div>
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.22.30_5383c199.jpg" alt="Cute"></div>
+                    
+                </div>
+                 <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.22.17_40af6c4a.jpg" alt="Walking"></div>
+                </div>
+                <div class="memory-item">
+                    <div class="polaroid"><img src="img/WhatsApp Image 2025-12-23 at 22.21.44_583f6c17.jpg" alt="Art"></div>
+                </div>
+            </div>
+
+            <section class="wish-section glass-box">
+                
+                <div class="wish-text">
+                    "Like a rose in full bloom, you make everything around you beautiful.<br>
+                    May your day be filled with magic, laughter, and endless love."
+                </div>
+            </section>
+           </div>
+    </div>
+
+    <div id="surprise-screen">
+        
+        <div class="surprise-step-1">
+            <div class="romantic-hbd">Happy Birthday</div>
+            <div class="romantic-name">Kanisha</div>
+            <div class="romantic-msg">
+                <p>"In a world full of art, I'd still stare at <span class="highlight-word">you</span>."</p>
+                <br>
+                <p>May this year bring you as much joy as your smile brings to everyone else. You are truly special.</p>
+                <br>
+                <p style="font-size: 2rem; color: #ff4d6d;">❤️ 🌹 ❤️</p>
+            </div>
+            <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+        </div>
+
+        <div class="surprise-step-2">
+            <h2 style="font-family: 'Great Vibes'; font-size: 3.5rem; margin-bottom: 20px; color: var(--primary);">Where Love Begins...</h2>
+            
+            <div class="family-card">
+                <img src="img/475A6645.jpg" alt="Beautiful Family">
+                <div class="family-quote">
+                    "To the roots that grounded you and the wings that let you fly.<br>
+                    Family is not just an important thing, it's everything."
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. DYNAMIC FLOWER RAIN ENGINE
+        function startFlowerRain() {
+            const container = document.getElementById('flower-container');
+            const symbols = ['🌹', '🌸', '🌺', '✨', '🦋', '💖', '🌷', '🎀', '💞', '💌', '💗'];
+            
+            setInterval(() => {
+                const petal = document.createElement('div');
+                petal.classList.add('falling-flower');
+                petal.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                petal.style.opacity = Math.random() * 0.5 + 0.3;
+                container.appendChild(petal);
+                setTimeout(() => { petal.remove(); }, 10000);
+            }, 300);
+        }
+        startFlowerRain();
+
+        // 2. COUNTDOWN LOGIC
+        // !!! CHANGE THIS FOR REAL BIRTHDAY:
+         //const countDate = new Date('January 22, 2026 00:00:00').getTime();
+        const countDate = new Date().getTime() + 15000; // 10 seconds demo
+
+        let timer = setInterval(function() {
+            const now = new Date().getTime();
+            const gap = countDate - now;
+
+            const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = d > 0 ? d : '0';
+            document.getElementById('hours').innerText = h > 0 ? h : '0';
+            document.getElementById('minutes').innerText = m > 0 ? m : '0';
+            document.getElementById('seconds').innerText = s > 0 ? s : '0';
+
+            if (gap < 0) {
+                clearInterval(timer);
+                bloomExplosion(); // Automatic Trigger
+            }
+        }, 1000);
+
+        // 3. EXPLOSION EFFECT & PAGE REPLACEMENT
+        function bloomExplosion() {
+            // A. Physical Vibration
+            if (navigator.vibrate) {
+                navigator.vibrate([200, 100, 200, 100, 500]); 
+            }
+
+            // B. Screen Shake
+            document.body.classList.add('shake-screen');
+            
+            // C. White Flash
+            document.getElementById('flash').classList.add('flash-active');
+
+            // D. Fade Out Main Content
+            const mainContent = document.getElementById('main-content');
+            mainContent.style.opacity = '0';
+
+            // E. Show Surprise Screen (After flash)
+            setTimeout(() => {
+                mainContent.style.display = 'none'; // Completely remove old page
+                document.getElementById('surprise-screen').classList.add('active-surprise');
+                
+                // Intense Flower Burst
+                const container = document.getElementById('flower-container');
+                for(let i=0; i<150; i++) {
+                    const petal = document.createElement('div');
+                    petal.classList.add('falling-flower');
+                    petal.innerText = Math.random() > 0.5 ? '🌹' : '❤️';
+                    petal.style.left = Math.random() * 100 + 'vw';
+                    petal.style.animationDuration = '3s';
+                    petal.style.bottom = '0';
+                    container.appendChild(petal);
+                }
+            }, 800);
+        }
+    </script>
+</body>
+</html>
